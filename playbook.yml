@@ -1,0 +1,34 @@
+---
+- name: Copy and run script
+  hosts: all
+  become: true
+  tasks:
+    - name: Copy script from master to slave node
+      ansible.builtin.copy:
+        src: /home/vagrant/ansible_project/LAMP.sh
+        dest: /home/vagrant/ansible_project/LAMP.sh
+        owner: vagrant
+        mode: "0755"
+
+    - name: Execute the bash script on the slave node
+      shell: /home/vagrant/ansible_project/LAMP.sh
+
+    - name: Verify the PHP application accessibility
+      uri:
+        url: http://192.168.33.23
+        status_code: 200
+      register: response
+
+    - name: Debug response
+      debug:
+        var: response     
+
+    - name: Create cron job to check server uptime
+      ansible.builtin.cron:
+        name: "Check server uptime"
+        user: "root"
+        job: "uptime >> /var/log/server_uptime.log"
+        minute: "0"
+        hour: "0"
+      become: true
+
