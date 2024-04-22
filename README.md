@@ -4,13 +4,13 @@ STEPS IN CARRYING OUT ALTSCHOOL CLOUD ENGINEERING SECOND SEMESTER EXAMINATION PR
 
 - Vagrant was initialized using 'vagrant init' command
 
-- Vagrant was provisioned - Two virtual machines were defined and configured: ansible_master and ansible_slave with respective ip addresses of 192.168.33.22 and 192.168.33.23
+- The provisioning of two ubuntu-based servers were automated using vagrant - Two virtual machines were defined and configured: ansible_master and ansible_slave with respective ip addresses of 192.168.33.22 and 192.168.33.23
 
 - The vagrantfile was saved and the virtual machines were started using 'vagrant up' command
 
 - Using the 'vagrant ssh ansible_master', the master node was accessed
 
-- Using the 'Vagrant ssh ansible_slave', the slave node was accessed
+- Using the 'vagrant ssh ansible_slave', the slave node was accessed
 
 - On the master node, a bash script was created to automate the deployment of LAMP
 
